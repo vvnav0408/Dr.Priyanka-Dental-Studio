@@ -1,0 +1,13 @@
+Please place your local image assets in this directory:
+- logo.png
+- clinic-exterior.png (or signboard.png)
+- reception.png
+- treatment-room-1.png
+- treatment-room-2.png
+- dr-priyanka.png
+- before-1.png
+- after-1.png
+- before-2.png
+- after-2.png
+
+Ensure before/after image pairs have identical crops and dimensions (e.g., 800x600 px or 800x800 px) for perfect alignment in the vertical slider.
