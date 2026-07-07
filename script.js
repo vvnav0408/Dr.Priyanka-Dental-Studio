@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize and bind events to each slider
   sliders.forEach(slider => {
     const divider = slider.querySelector('.slider-divider');
+    const handle = slider.querySelector('.slider-handle');
     
     // Set initial middle state (50%)
     updateSliderPosition(slider, 50);
@@ -224,14 +225,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDragging = false;
 
     const startDrag = (e) => {
+      // Only start drag if originating on handle or inside it
+      if (e.target !== handle && !handle.contains(e.target)) return;
+      
       isDragging = true;
       slider.classList.add('dragging');
       fadeHint();
       
-      // Attach events to window for global movement tracking
-      window.addEventListener('pointermove', performDrag);
-      window.addEventListener('pointerup', endDrag);
-      window.addEventListener('pointercancel', endDrag);
+      // Capture pointer events to ensure smooth dragging even if finger leaves handle area
+      try {
+        handle.setPointerCapture(e.pointerId);
+      } catch (err) {
+        console.warn("Failed to set pointer capture:", err);
+      }
+      
+      // Listen to capture events on the handle element
+      handle.addEventListener('pointermove', performDrag);
+      handle.addEventListener('pointerup', endDrag);
+      handle.addEventListener('pointercancel', endDrag);
       
       // Update position on initial click
       performDrag(e);
@@ -239,6 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const performDrag = (e) => {
       if (!isDragging) return;
+      
+      // Prevent browser's native touch gestures (scrolling) during active dragging
+      if (e.cancelable) {
+        e.preventDefault();
+      }
       
       const rect = slider.getBoundingClientRect();
       const clientY = e.clientY;
@@ -252,17 +268,23 @@ document.addEventListener('DOMContentLoaded', () => {
       updateSliderPosition(slider, percentage);
     };
 
-    const endDrag = () => {
+    const endDrag = (e) => {
       if (isDragging) {
         isDragging = false;
         slider.classList.remove('dragging');
-        window.removeEventListener('pointermove', performDrag);
-        window.removeEventListener('pointerup', endDrag);
-        window.removeEventListener('pointercancel', endDrag);
+        
+        try {
+          handle.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+        
+        handle.removeEventListener('pointermove', performDrag);
+        handle.removeEventListener('pointerup', endDrag);
+        handle.removeEventListener('pointercancel', endDrag);
       }
     };
 
-    divider.addEventListener('pointerdown', startDrag);
+    // Listen on handle for drag interactions
+    handle.addEventListener('pointerdown', startDrag);
 
     // Keyboard Arrow Accessibility support
     divider.addEventListener('keydown', (e) => {

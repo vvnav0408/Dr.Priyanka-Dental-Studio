@@ -159,33 +159,7 @@ img {
   width: 100%;
 }
 
-/* Announcement Bar */
-.announcement-bar {
-  background-color: var(--primary-charcoal);
-  color: var(--text-light);
-  font-size: 0.85rem;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-  font-family: var(--font-ui);
-}
 
-.announcement-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.announcement-content a {
-  color: var(--accent-gold);
-  font-weight: 500;
-}
-
-.announcement-content a:hover {
-  color: var(--white);
-  text-decoration: underline;
-}
 
 .icon-inline {
   width: 14px;
@@ -836,6 +810,7 @@ img {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 4px solid var(--bg-white);
+  touch-action: pan-y;
 }
 
 .comparison-slider {
@@ -845,6 +820,7 @@ img {
   height: 100%;
   user-select: none;
   -webkit-user-select: none;
+  touch-action: pan-y;
 }
 
 .comparison-slider.active {
@@ -916,11 +892,11 @@ img {
   height: 4px;
   background-color: var(--accent-gold);
   z-index: 10;
-  cursor: ns-resize; /* Vertical resize cursor */
   transform: translateY(-50%);
   top: 50%; /* Synchronized via JS */
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
   outline: none;
+  pointer-events: none; /* Let touches pass through the line to trigger page scroll */
 }
 
 .slider-divider:focus-visible {
@@ -934,8 +910,8 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   background-color: var(--primary-charcoal);
   border: 3px solid var(--accent-gold);
   border-radius: 50%;
@@ -943,12 +919,14 @@ img {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-lg);
-  pointer-events: none;
+  pointer-events: auto; /* Catch pointer down to drag */
+  touch-action: none; /* Disable browser page scroll overlay ONLY on the handle */
+  cursor: ns-resize; /* Vertical resize cursor */
   transition: transform var(--transition-fast);
 }
 
-.slider-divider:hover .slider-handle,
-.slider-divider:active .slider-handle {
+.slider-handle:hover,
+.slider-handle:active {
   transform: translate(-50%, -50%) scale(1.1);
   background-color: var(--secondary-charcoal);
 }
