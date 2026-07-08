@@ -1,5 +1,5 @@
 /**
- * Dr. Priyanka's Dental Studio - Script
+ * Smile Solutions Multi Speciality Dental Clinic Dr RAMYA - Script
  */
 
 document.addEventListener('DOMContentLoaded', () => {

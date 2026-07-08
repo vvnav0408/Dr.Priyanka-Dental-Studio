@@ -1,25 +1,30 @@
 /* 
 ========================================================================
-   DR. PRIYANKA'S DENTAL STUDIO - PREMIUM STYLE SHEET
+   SMILE SOLUTIONS MULTI SPECIALITY DENTAL CLINIC Dr RAMYA - PREMIUM STYLE SHEET
 ========================================================================
 */
 
 /* Core CSS Variables */
 :root {
-  --primary-charcoal: #1A1612;      /* Deep charcoal black from logo */      /* Matches the very dark navy/charcoal of the logo */
-  --secondary-charcoal: #2E2E2E;    /* Dark charcoal grey from logo */    /* Lighter Navy for backgrounds */
-  --accent-gold: #F8C80E;       /* Matches the exact gold of the logo */
-  --gold-hover: #DFB207;        /* Saturated gold for hover */
-  --gold-light: rgba(248, 200, 14, 0.12); /* Light gold wash */
+  --primary-charcoal: #13191c;      /* Deep slate-charcoal from logo */
+  --secondary-charcoal: #252e35;    /* Medium slate grey from logo */
+  --accent-gold: #00a9f7;           /* Vibrant dental blue from logo (Primary Brand Color) */
+  --gold-hover: #0084c2;            /* Darker blue for hovers */
+  --gold-light: rgba(0, 169, 247, 0.1); /* Light blue wash */
+  
+  --accent-peach: #fdc279;          /* Warm peach-gold from logo */
+  --peach-hover: #fcae50;           /* Warm gold hover */
+  --peach-light: rgba(253, 194, 121, 0.12); /* Light gold wash */
   
   --bg-white: #FFFFFF;
-  --bg-cream: #FDFBF7;          /* Soft warm light background */
-  --bg-light: #F7F9FC;          /* Soft cool light background */
+  --white: #FFFFFF;
+  --bg-cream: #f4faff;              /* Soft blue light background */
+  --bg-light: #f7fafd;              /* Soft cool blue-tinted background */
   
-  --text-dark: #2E2E2E;         /* Neutral dark charcoal */         /* Crisp near-black for readability */
-  --text-light: #F7FAFC;        /* Clear white for dark sections */
-  --text-muted: #7A7A7A;        /* Neutral mid grey from logo */        /* Subdued text */
-  --text-muted-light: #A9A9A9;  /* Light grey for text on dark backgrounds */  /* Subdued text on dark background */
+  --text-dark: #252e35;             /* Slate text color */
+  --text-light: #F7FAFC;            /* White for dark backgrounds */
+  --text-muted: #6b7782;            /* Slate grey muted text */
+  --text-muted-light: #a5b1bd;      /* Light grey for dark backgrounds */
 
   /* Typography */
   --font-title: 'Playfair Display', serif;
@@ -35,7 +40,8 @@
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 10px 20px rgba(30, 30, 30, 0.05);
   --shadow-lg: 0 20px 35px rgba(30, 30, 30, 0.1);
-  --shadow-gold: 0 4px 15px rgba(248, 200, 14, 0.3);
+  --shadow-gold: 0 4px 15px rgba(0, 169, 247, 0.25);
+  --shadow-peach: 0 4px 15px rgba(253, 194, 121, 0.25);
 
   /* Transitions */
   --transition-fast: 0.2s ease;
@@ -889,7 +895,7 @@ img {
   left: 0;
   right: 0;
   height: 4px;
-  background-color: var(--accent-gold);
+  background-color: var(--accent-peach);
   z-index: 10;
   transform: translateY(-50%);
   top: 50%; /* Synchronized via JS */
@@ -899,8 +905,8 @@ img {
 }
 
 .slider-divider:focus-visible {
-  background-color: var(--white);
-  box-shadow: 0 0 0 4px var(--accent-gold);
+  background-color: var(--bg-white);
+  box-shadow: 0 0 0 4px var(--accent-peach);
 }
 
 /* Circular Grip Handle */
@@ -912,7 +918,7 @@ img {
   width: 50px;
   height: 50px;
   background-color: var(--primary-charcoal);
-  border: 3px solid var(--accent-gold);
+  border: 3px solid var(--accent-peach);
   border-radius: 50%;
   display: flex;
   align-items: center;
